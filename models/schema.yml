@@ -34,6 +34,9 @@ models:
             #定義欄位只允許哪些值
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
 
+          # 上面的換個方式寫 :  macro: dbt_utils.not_accepted_values    
+          # - dbt_utils.not_accepted_values:
+          #     values: ['pending_payment']
             # 測試失敗情境
             # values: ['placed', 'shipped', 'completed']
       - name: customer_id
