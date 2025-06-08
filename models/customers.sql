@@ -1,5 +1,5 @@
 {{ config(materialized="table") }}
-
+-- ref function 會依照設定的 BigQuery project, dataset, schema，compile 出完整的 view 或 table 名稱。
 with customers as (
 
     select * from {{ ref('stg_customers') }}
