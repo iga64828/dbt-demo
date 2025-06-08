@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+            #定義欄位只允許哪些值
+              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+
+            # 測試失敗情境
+            # values: ['placed', 'shipped', 'completed']
+      - name: customer_id
+        tests:
+          - not_null
+          # 定義欄位允許的值，必須存在於另外一個 model，類似 foreign key 
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
