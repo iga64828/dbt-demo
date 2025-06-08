@@ -24,6 +24,16 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+# 或是在跑test指令加上 --store-failures
+# ex: dbt test --store-failures
+# 預設儲存位置是
+#     Schema/dataset: 預設的schema/dataset名稱 + _dbt_test__audit 後綴。
+#     table name: Test 名稱
+# 例如我在開發環境的預設 dataset 是 dbt_dev，
+# test 名稱是 test_order_statuses_accepted_values，
+# 那麼沒通過 test 的資料就會被存在 dbt_dev_dbt_testaudit.test_order_statuses_accepted_values
+tests:
+  +store_failures: true
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
