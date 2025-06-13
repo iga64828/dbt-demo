@@ -13,3 +13,7 @@ Jaffle 就是熱壓土司。
 
 指令紀錄:
 Compile 將 dbt Jinja SQL 翻譯成純 SQL 
+
+建立該table，不整張表都更新，可以只更新差份。
+{{ config(materialized='incremental') }}
+select * from {{ ref('int_sales_orders') }}
