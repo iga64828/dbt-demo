@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  PRIVATE_KEY: ${{ secrets.PK }}
+  PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 
 jobs:
   dbt_build:
