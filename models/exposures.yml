@@ -1,0 +1,21 @@
+version: 2
+
+exposures:
+# Exposures 可以理解為 dbt 的 output，也就是說經過 dbt 轉換的資料都被用在哪些地方
+  - name: tableau_data_source
+
+    # dashboard, notebook, analysis, ml, application
+    type: analysis
+    label: Tableau Data Source
+    description: Analytics ready datasets for Tableau
+    tags: ['business_intelligence']
+    depends_on:
+      - ref('customers')
+    owner:
+      name: Louis Yu
+
+
+
+    # 開發時，如果動到 model，可以直接在 lineage graph 檢查會影響到哪些 exposures。
+    # 如果有需要的話，可以開放下游使用者，例如 Tableau 的核心使用者，直接檢視 dbt 文件的 exposures 區塊。
+    # 執行指令的時候可以使用，例如想要一次 build 所有 Tableau 用到的 models，包含其上游，就可以這樣下： dbt build --select +exposure:tableau_data_source
