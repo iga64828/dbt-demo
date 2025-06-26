@@ -6,3 +6,5 @@ logs/
 venv
 .user.yml
 profiles.yml
+dbt_internal_packages/
+settings.json
